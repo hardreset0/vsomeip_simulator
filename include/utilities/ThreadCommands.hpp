@@ -12,6 +12,7 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
+#include <algorithm>
 
 namespace utilities
 {

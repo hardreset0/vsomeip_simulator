@@ -5,7 +5,7 @@
 #include <exception>
 #include <memory>
 #include <iostream>
-#include <functional>
+#include <algorithm>
 #include <stdexcept>
 #include  <utility>
 
@@ -28,7 +28,7 @@ namespace someip
         if (false == file) return false; 
 
 
-        bool ok = this->m_jsonHandler.loadConfiguration( this->m_file.getData() );
+        bool ok = this->m_jsonHandler.loadConfiguration( this->m_file->getData() );
 
         if (!ok) return false;
 

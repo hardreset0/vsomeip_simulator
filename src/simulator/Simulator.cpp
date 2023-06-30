@@ -12,7 +12,7 @@
 #include <thread>
 #include "Simulator.hpp"
 #include <chrono>
-
+#include <algorithm>
 
 const std::string path {"./env.json"};
 

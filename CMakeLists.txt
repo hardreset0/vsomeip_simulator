@@ -4,7 +4,7 @@
 project(VSOMEIP_SIMULATOR)
 
 # Set C++ standard to C++17
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 
@@ -22,6 +22,8 @@ include_directories(
     ${CMAKE_SOURCE_DIR}/include/app_manager/
     ${CMAKE_SOURCE_DIR}/include/apps_simulator/
     ${CMAKE_SOURCE_DIR}/include/simulator/
+    ${Boost_INCLUDE_DIR}
+    ${VSOMEIP_INCLUDE_DIRS}
 )
 
 
@@ -38,3 +40,4 @@ set(SOURCES
 
 # Executable
 add_executable(VSOMEIP_SIMULATOR ${SOURCES})
+target_link_libraries(VSOMEIP_SIMULATOR libvsomeip3-sd.so.3.3.8 vsomeip3 ${Boost_LIBRARIES})

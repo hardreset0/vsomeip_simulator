@@ -8,7 +8,9 @@
 #include <string>
 #include <thread>
 #include <chrono>
-
+#include <sstream>
+#include <iomanip>
+#include <algorithm>
 
 App::App(someip::application app):application_data(app)
 {
@@ -64,11 +66,13 @@ void App::stop_offer_event()
 void App::register_all_methods()
 {
     std::for_each(this->application_data.m_methods.begin(), this->application_data.m_methods.end(), [this](const someip::method method){
-        this->app->register_message_handler(\
+        this->app->register_message_handler(
         std::stoul(this->application_data.m_is_service, nullptr, 16), 
         std::stoul(this->application_data.m_instance_id, nullptr, 16),
         std::stoul(method.m_method_id, nullptr, 16), 
-        &App::on_message);
+        [this](const std::shared_ptr<vsomeip::message> &_request){ 
+            this->on_message(_request);
+        });
     });
     
 }
