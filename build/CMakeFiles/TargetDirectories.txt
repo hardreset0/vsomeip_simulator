@@ -1,0 +1,3 @@
+/Users/hazemkhaled/Documents/courses/my_notes/EmbeddedLinux/EmbeddedLinux/SOMEIP/vsomeip/coding/simulator/build/CMakeFiles/VSOMEIP_SIMULATOR.dir
+/Users/hazemkhaled/Documents/courses/my_notes/EmbeddedLinux/EmbeddedLinux/SOMEIP/vsomeip/coding/simulator/build/CMakeFiles/edit_cache.dir
+/Users/hazemkhaled/Documents/courses/my_notes/EmbeddedLinux/EmbeddedLinux/SOMEIP/vsomeip/coding/simulator/build/CMakeFiles/rebuild_cache.dir
