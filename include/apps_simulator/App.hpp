@@ -31,8 +31,8 @@ class App : public IApp
 
     void register_all_events() override;
 
-    void on_message();
-    
+    void on_message(const std::shared_ptr<vsomeip::message> &_request);
+
     someip::application application_data;
     std::shared_ptr< vsomeip::application > app;
 
