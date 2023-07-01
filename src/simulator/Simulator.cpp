@@ -44,9 +44,6 @@ void Simulator_impl::init()
     std::for_each(apps_name.begin(), apps_name.end(), [this](someip::application_name app_name){
         // get app.
         auto app = this->m_configuration.getApplication(app_name);
-
-        this->m_app_manager.createApplication(app);
-        app.m_app_name = "bola";// TODO:
         this->m_app_manager.createApplication(app);
     });
     // for each application ..

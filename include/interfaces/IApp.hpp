@@ -8,21 +8,18 @@ class IApp
     public:
     virtual void init() = 0;
     virtual void run()  = 0;
-    // TODO: 
-    virtual void offer_service();
-    //TODO: 
-    virtual void offer_event();
 
-    //TODO: 
-    virtual void stop_offer_service();
+    virtual void offer_service() = 0;
 
-    //TODO:
-    virtual void stop_offer_event();
+    virtual void offer_event()  = 0;
 
-    //TODO:
+    virtual void stop_offer_service() = 0;
+
+    virtual void stop_offer_event()   = 0; 
 
     private:
-    virtual void on_messageHandler() = 0;
+    virtual void register_all_methods() = 0;
+    virtual void register_all_events()  = 0;
 
 };
 

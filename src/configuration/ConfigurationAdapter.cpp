@@ -23,13 +23,12 @@ namespace someip
 
     bool ConfigurationAdapter::init(const std::string & path)
     {
-        // TODO: remove comment file.
-        //auto file = this->m_file->openFile(path);
+        auto file = this->m_file->openFile(path);
 
-        //if (false == file) return false; 
+        if (false == file) return false; 
 
 
-        bool ok = this->m_jsonHandler.loadConfiguration( "{\"Applications\":[{\"name\":\"Hello\",\"under_test\":\"false\",\"service\":\"true\",\"service_id\":\"0x1234\",\"instance_id\":\"0x5678\",\"methods\":[{\"name\":\"sayGoodBye\",\"method_id\":\"0x0421\",\"in\":{\"name\":\"string\"},\"out\":{\"word\":\"string\"}}],\"events\":[{\"name\":\"data\",\"event_id\":\"0x12345\",\"in\":{\"name\":\"string\"},\"out\":{\"word\":\"string\"}}]}]}" );
+        bool ok = this->m_jsonHandler.loadConfiguration( this->m_file.getData() );
 
         if (!ok) return false;
 
