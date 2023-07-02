@@ -45,7 +45,7 @@ namespace someip
             this->m_jsonHandler.getEntry(data, "is_service" , _app.m_is_service);
             this->m_jsonHandler.getEntry(data, "service_id" , _app.m_service_id);
             this->m_jsonHandler.getEntry(data, "under_test" , _app.m_is_under_test);
-
+            this->m_jsonHandler.getEntry(data, "instance_id" , _app.m_instance_id);
 
             try 
             {

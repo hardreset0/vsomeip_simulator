@@ -40,4 +40,4 @@ set(SOURCES
 
 # Executable
 add_executable(VSOMEIP_SIMULATOR ${SOURCES})
-target_link_libraries(VSOMEIP_SIMULATOR libvsomeip3-sd.so.3.3.8 vsomeip3 ${Boost_LIBRARIES})
+target_link_libraries(VSOMEIP_SIMULATOR vsomeip3 ${Boost_LIBRARIES})

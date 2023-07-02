@@ -32,8 +32,9 @@ void App::init()
     this->app = vsomeip::runtime::get()->create_application(this->application_data.m_app_name);
     this->app->init();
     this->register_all_methods();
-    // app->offer_service(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID);
-    
+    this->app->offer_service(std::stoul(this->application_data.m_service_id, nullptr, 16), std::stoul(this->application_data.m_instance_id, nullptr, 16),
+    1);
+
 }
 
 void App::run()
@@ -66,10 +67,16 @@ void App::stop_offer_event()
 void App::register_all_methods()
 {
     std::for_each(this->application_data.m_methods.begin(), this->application_data.m_methods.end(), [this](const someip::method method){
+        auto auto_service_id = std::stoul(this->application_data.m_service_id, nullptr, 16);
+        auto auto_instance_id = std::stoul(this->application_data.m_instance_id, nullptr, 16);
+        auto auto_method_id   = std::stoul(method.m_method_id, nullptr, 16);
+
+        
+
         this->app->register_message_handler(
-        std::stoul(this->application_data.m_is_service, nullptr, 16), 
-        std::stoul(this->application_data.m_instance_id, nullptr, 16),
-        std::stoul(method.m_method_id, nullptr, 16), 
+        auto_service_id, 
+        auto_instance_id,
+        auto_method_id, 
         [this](const std::shared_ptr<vsomeip::message> &_request){ 
             this->on_message(_request);
         });
@@ -96,12 +103,23 @@ void App::on_message(const std::shared_ptr<vsomeip::message> &_request)
         << ss.str() << std::endl;
 
     // Create response
+    
     std::shared_ptr<vsomeip::message> its_response = vsomeip::runtime::get()->create_response(_request);
     its_payload = vsomeip::runtime::get()->create_payload();
+
+    
     std::vector<vsomeip::byte_t> its_payload_data;
-    for (int i=9; i>=0; i--) {
+    its_payload_data.push_back(0x00);
+    its_payload_data.push_back(0x00);
+    its_payload_data.push_back(0x00);
+    its_payload_data.push_back(0x0A);
+    its_payload_data.push_back(0xEF);
+    its_payload_data.push_back(0xBB);
+    its_payload_data.push_back(0xBF);
+    for (int i=70; i>=65; i--) {
         its_payload_data.push_back(i % 256);
     }
+    its_payload_data.push_back('\0');
     its_payload->set_data(its_payload_data);
     its_response->set_payload(its_payload);
     app->send(its_response);
